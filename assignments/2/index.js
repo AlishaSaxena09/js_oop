@@ -6,7 +6,10 @@
 
 function makePerson(name, age) {
 	// add code here
-
+  return({
+    name: name,
+    age: age
+  })
 
 }
 
@@ -29,8 +32,14 @@ var vicky = makePerson('Vicky', 24);
 
 var personStore = {
 	// add code here
+  greet: function greet() {
+    console.log("hello");
+  },
 
-
+  introduce: function introduce() {
+    // console.log (this);
+    console.log(`Hi! My name is ${this.name}`)
+  }
 };
 
 // /********* Uncomment this line to test your work! *********/
@@ -41,9 +50,12 @@ var personStore = {
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-	// add code here
+  // add code here
+  let personObj = Object.create(personStore);
+  personObj.name = name;
+  personObj.age = age;
 
-
+  return personObj;
 }
 
 var sandra = personFromPersonStore('Sandra', 26);
@@ -59,7 +71,6 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 3 of 3 ***/
 
 // add code here
-
 // sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
 
@@ -73,14 +84,15 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 1 of 3 ***/
 
 function PersonConstructor() {
-	// add code here
-
-
+	// add code here  
+this.greet = function() {
+  console.log("hello")
 }
-
+}
 
 // /********* Uncomment this line to test your work! *********/
 var simon = new PersonConstructor;
+
 // simon.greet(); // -> Logs 'hello'
 
 
@@ -88,12 +100,19 @@ var simon = new PersonConstructor;
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromConstructor(name, age) {
-	// add code here
-
-
+  // add code here
+  // let person = new PersonConstructor();
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log("hello")
+  }
+  this.introduce = function() {
+    console.log(`Hi ! my name is ${this.name}`);
+  }
 }
 
-var mike = personFromConstructor('Mike', 30);
+var mike = new personFromConstructor('Mike', 30);
 
 
 // /********* Uncomment these lines to test your work! *********/
@@ -117,9 +136,9 @@ var mike = personFromConstructor('Mike', 30);
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-	constructor() {
+	constructor(name) {
     // add code here
-
+    
 
 	}
 
