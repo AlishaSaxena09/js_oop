@@ -1,24 +1,25 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); // true
 
-console.log(this === window); //Output
+console.log(this === window); //true
 
 var myFunction = function() {
   console.log(this);
 };
-myFunction(); // Output
+myFunction(); // Window
 
 function f1() {
   "use strict";
   return this;
 }
-console.log(f1() === window); //Output
+console.log(f1() === window); //false
 
 function foo() {
   console.log("Simple function call");
   console.log(this === window);
 }
 
-foo(); //Output ??
+foo(); //simple function call 
+// true
 console.log(this === window)(
   // Output
 
@@ -36,7 +37,7 @@ function foo() {
   console.log(this === window);
 }
 
-foo(); // Output
+foo(); // Simple function call // false
 
 var myObject = {};
 myObject.someMethod = function() {
@@ -56,9 +57,9 @@ function Person(fn, ln) {
 }
 
 let person = new Person("John", "Reed");
-person.displayName(); // Output
+person.displayName(); // name: John Reed
 let person2 = new Person("Paul", "Adams");
-person2.displayName(); // Output
+person2.displayName(); // name: Paul Adams
 
 //This refers to the invoker Object
 function foo() {
@@ -75,10 +76,11 @@ let user = {
   }
 };
 
-user.foo(); // Output
+user.foo(); // Simple function call // false
+
 let fun1 = user.foo1;
-fun1(); // Output ??
-user.foo1(); // Output ??
+fun1(); // true
+user.foo1(); // false
 
 //this will call apply and bind
 
@@ -90,13 +92,13 @@ var module = {
   }
 };
 
-module.getX(); // Output ??
+module.getX(); // 81
 
 var retrieveX = module.getX;
-retrieveX(); //Output ??
+retrieveX(); // 9
 
 var boundGetX = retrieveX.bind(module);
-boundGetX(); // Output ??
+boundGetX(); // 81
 
 // Call with new constructor
 
@@ -110,11 +112,11 @@ function Person(fn, ln) {
 }
 
 let person = new Person("John", "Reed");
-person.displayName(); // Output
+person.displayName(); // name: John Reed
 let person2 = new Person("Paul", "Adams");
-person2.displayName(); // Output
+person2.displayName(); // name: Paul Adams
 
-person.displayName.call(person2); // Output ??
+person.displayName.call(person2); // Paul Adams
 
 // Guess the output of the following
 
@@ -130,10 +132,10 @@ const obj = {
 obj.getThis3 = obj.getThis.bind(obj);
 obj.getThis4 = obj.getThis2.bind(obj);
 
-// Output
+// window
 obj.getThis();
 
-// Output
+// window
 obj.getThis.call(a);
 
 // Output
@@ -142,13 +144,13 @@ obj.getThis2();
 // Output
 obj.getThis2.call(a);
 
-// Output
+// window
 obj.getThis3();
 
 // Output
 obj.getThis3.call(a);
 
-// Output
+// window
 obj.getThis4();
 
 // Output
