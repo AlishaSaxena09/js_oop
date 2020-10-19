@@ -138,10 +138,12 @@ var mike = new personFromConstructor('Mike', 30);
 class PersonClass {
 	constructor(name) {
     // add code here
-    
+    this.name = name;
 
 	}
-
+  greet = function(){
+    console.log("hello");
+  }
 	// add code here
 
 }
@@ -156,6 +158,14 @@ var george = new PersonClass;
 /*** CHALLENGE 2 of 3 ***/
 
 // add code here
+class DeveloperClass extends class PersonClass {
+  constructor(name) {
+    this.name
+  }
+  introduce = function(){
+    console.log(`Hello AudioWorkletNode, my name is ${name}`)
+  }
+}
 
 
 // /********* Uncomment these lines to test your work! *********/
