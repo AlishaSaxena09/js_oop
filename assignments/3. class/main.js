@@ -1,0 +1,9 @@
+class ListBinding {
+    constructor(element) {
+        this.listElement = element;
+        this.textList = [];
+    }
+    update(){
+        
+    }
+}
